@@ -15,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::with('user')->latest()->paginate(4);
+        // simplePaginate(4) 1ページに4件
+        return view('posts.index', compact('posts'));
+        // compact('post') == ['post' => $post]
     }
 
     /**
