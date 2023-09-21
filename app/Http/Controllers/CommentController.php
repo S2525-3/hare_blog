@@ -33,17 +33,17 @@ class CommentController extends Controller
         $comment = new Comment($request->all());
         $comment->user_id = $request->user()->id;
 
-    try {
-    // 登録
-    $post->comments()->save($comment);
-    // save 登録する？
-    } catch (\Exception $e) {
-    return back()->withInput()->withErrors($e->getMessage());
-    }
+        try {
+            // 登録
+            $post->comments()->save($comment);
+            // save 登録する？
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors($e->getMessage());
+        }
 
-    return redirect()
-    ->route('posts.show', $post)
-    ->with('notice', 'コメントを登録しました');
+        return redirect()
+            ->route('posts.show', $post)
+            ->with('notice', 'コメントを登録しました');
     }
 
     /**
