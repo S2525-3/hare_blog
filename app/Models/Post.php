@@ -20,6 +20,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getImageUrlAttribute()
     // getImageUrlAttribute == image_url
     {
@@ -29,6 +34,6 @@ class Post extends Model
 
     public function getImagePathAttribute()
     {
-    return 'images/posts/' . $this->image;
+        return 'images/posts/' . $this->image;
     }
 }
